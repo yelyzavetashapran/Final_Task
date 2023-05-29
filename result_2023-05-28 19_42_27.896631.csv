@@ -1,0 +1,684 @@
+#,Table,DQ Check,Column,Status,Counts or Bad Data
+1,carriers,Completeness,All,Fail,Source have more records: 759
+2,airports,Completeness,All,Fail,Source have more records: 1699
+3,flights,Completeness,All,Fail,Source have more records: 274
+4,Source/carriers,Completeness,Code,Fail,5
+5,Raw/carriers,Completeness,Code,Pass,There are no NULL values.
+6,Source/carriers,Completeness,Description,Fail,3
+7,Raw/carriers,Completeness,Description,Pass,There are no NULL values.
+8,Source/airports,Consistency,State,Pass,All values are correct.
+9,Raw/airports,Consistency,State,Pass,All values are correct.
+10,Source/airports,Consistency,"State, Country",Fail,"Bad records found:
+     iata                     airport        city state country        lat  \
+10    01A           Perry-Warsaw-Test  Perry-Test   NaN     USA  42.741347   
+1142  CLD  MC Clellan-Palomar Airport         NaN   NaN     USA  33.127231   
+1721  HHH                 Hilton Head         NaN   NaN     USA  32.224384   
+2257  MIB                   Minot AFB         NaN   NaN     USA  48.415769   
+2318  MQT    Marquette County Airport         NaN   NaN     USA  46.353639   
+2758  RCA               Ellsworth AFB         NaN   NaN     USA  44.145094   
+2765  RDR             Grand Forks AFB         NaN   NaN     USA  47.961167   
+2906  SCE             University Park         NaN   NaN     USA  40.851206   
+2970  SKA               Fairchild AFB         NaN   NaN     USA  47.615058   
+
+            long  
+10    -78.052081  
+1142 -117.278727  
+1721  -80.697629  
+2257 -101.358039  
+2318  -87.395361  
+2758 -103.103567  
+2765  -97.401167  
+2906  -77.846302  
+2970 -117.655803  "
+11,Raw/airports,Consistency,"State, Country",Pass,All values are correct.
+12,Source/flights,Validity,Year,Fail,"Bad records found:
+     Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+513   NaN    NaN         NaN        NaN      NaN         NaN      NaN   
+514   NaN    2.0         2.0        6.0    520.0       400.0    704.0   
+
+     CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+513         NaN           NaN        NaN  ...    4.0     13.0        0.0   
+514       608.0            B6      724.0  ...    6.0      9.0        0.0   
+
+     CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+513               NaN       0.0           NaN          NaN      NaN   
+514               NaN       0.0           0.0          0.0      0.0   
+
+     SecurityDelay  LateAircraftDelay  
+513            NaN                NaN  
+514            0.0               56.0  
+
+[2 rows x 29 columns]"
+13,Raw/flights,Validity,Year,Fail,"Bad records found:
+    ActualElapsedTime AirTime ArrDelay ArrTime CRSArrTime CRSDepTime  \
+0                  86      71        5    1025       1030        905   
+1                  86      71       -5    1025       1030        905   
+2                  86      71       -5    1025       1030        905   
+3                 123      81       34    1104       1030        905   
+4                  93      71        4    1034       1030        905   
+..                ...     ...      ...     ...        ...        ...   
+258                68      48        4    1329       1325       1220   
+259                60      45       50    2240       2150       2050   
+260                64      45        4     909        905        805   
+261                68      46       16    1751       1735       1625   
+262                59      46        0    1045       1045        940   
+
+    CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+0               85                          0            0  ...        8   
+1               85                          0            0  ...        0   
+2               85                          0            3  ...        0   
+3               85                          0            0  ...       34   
+4               85                          0            0  ...        0   
+..             ...              ...       ...          ...  ...      ...   
+258             65                          0            0  ...        0   
+259             60                          0           21  ...        0   
+260             60                          0            0  ...        0   
+261             70                          0            4  ...        0   
+262             65                          0            0  ...        0   
+
+    Origin SecurityDelay TailNum TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+0      DFW             0  N454AA      5      10            AA            0   
+1      DFW             0  N454AA      5      10            AA            5   
+2      DFW             0  N454AA      5      10            AA            0   
+3      DFW             0  N495AA      7      35            AA            0   
+4      DFW             0  N456AA      5      17            AA            0   
+..     ...           ...     ...    ...     ...           ...          ...   
+258    LAS             0  N428WN      4      16            WN            0   
+259    LAS             0  N692SW      3      12            WN            0   
+260    LAS             0  N207WN      3      16            WN            0   
+261    LAS             0  N902WN      4      18            WN            0   
+262    LAS             0  N734SA      2      11            WN            0   
+
+    WeatherDelayStr  Year  
+0                NA  2008  
+1                 5  2008  
+2                NA  2008  
+3                 0  2008  
+4                NA  2008  
+..              ...   ...  
+258              NA  2008  
+259               0  2008  
+260              NA  2008  
+261               0  2008  
+262              NA  2008  
+
+[263 rows x 31 columns]"
+14,Source/flights,Validity,Month,Fail,"Bad records found:
+       Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+0    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+1    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+2    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+3    2008.0    5.0         2.0        5.0    901.0       905.0   1104.0   
+4    2008.0    5.0         3.0        6.0    901.0       905.0   1034.0   
+..      ...    ...         ...        ...      ...         ...      ...   
+532  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+533  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+534  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+535  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+536  2008.0    2.0         2.0        6.0   1126.0      1135.0   1237.0   
+
+     CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+0        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+1        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+2        1030.0            AA     1856.0  ...    5.0     10.0        0.0   
+3        1030.0            AA     1755.0  ...    7.0     35.0        0.0   
+4        1030.0            AA     1755.0  ...    5.0     17.0        0.0   
+..          ...           ...        ...  ...    ...      ...        ...   
+532      1845.0            B6      447.0  ...    NaN     14.0        0.0   
+533      1845.0            B6      447.0  ...    5.0      NaN        0.0   
+534      1845.0            B6      447.0  ...    5.0     14.0        NaN   
+535      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+536      1250.0            B6       51.0  ...    4.0     13.0        0.0   
+
+     CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+0                 NaN       0.0           NaN          NaN      8.0   
+1                 NaN       0.0           NaN          5.0      NaN   
+2                 NaN       0.0           3.0          NaN      NaN   
+3                 NaN       0.0           0.0          0.0     34.0   
+4                 NaN       0.0           NaN          NaN      NaN   
+..                ...       ...           ...          ...      ...   
+532               NaN       0.0           NaN          NaN      NaN   
+533               NaN       0.0           NaN          NaN      NaN   
+534               NaN       0.0           NaN          NaN      NaN   
+535               NaN       NaN           NaN          NaN      NaN   
+536               NaN       0.0           NaN          NaN      NaN   
+
+     SecurityDelay  LateAircraftDelay  
+0              NaN                NaN  
+1              NaN                NaN  
+2              NaN                NaN  
+3              0.0                0.0  
+4              NaN                NaN  
+..             ...                ...  
+532            NaN                NaN  
+533            NaN                NaN  
+534            NaN                NaN  
+535            NaN                NaN  
+536            NaN                NaN  
+
+[191 rows x 29 columns]"
+15,Raw/flights,Validity,Month,Fail,"Bad records found:
+    ActualElapsedTime AirTime ArrDelay ArrTime CRSArrTime CRSDepTime  \
+0                  86      71        5    1025       1030        905   
+1                  86      71       -5    1025       1030        905   
+2                  86      71       -5    1025       1030        905   
+3                 123      81       34    1104       1030        905   
+4                  93      71        4    1034       1030        905   
+..                ...     ...      ...     ...        ...        ...   
+258                68      48        4    1329       1325       1220   
+259                60      45       50    2240       2150       2050   
+260                64      45        4     909        905        805   
+261                68      46       16    1751       1735       1625   
+262                59      46        0    1045       1045        940   
+
+    CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+0               85                          0            0  ...        8   
+1               85                          0            0  ...        0   
+2               85                          0            3  ...        0   
+3               85                          0            0  ...       34   
+4               85                          0            0  ...        0   
+..             ...              ...       ...          ...  ...      ...   
+258             65                          0            0  ...        0   
+259             60                          0           21  ...        0   
+260             60                          0            0  ...        0   
+261             70                          0            4  ...        0   
+262             65                          0            0  ...        0   
+
+    Origin SecurityDelay TailNum TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+0      DFW             0  N454AA      5      10            AA            0   
+1      DFW             0  N454AA      5      10            AA            5   
+2      DFW             0  N454AA      5      10            AA            0   
+3      DFW             0  N495AA      7      35            AA            0   
+4      DFW             0  N456AA      5      17            AA            0   
+..     ...           ...     ...    ...     ...           ...          ...   
+258    LAS             0  N428WN      4      16            WN            0   
+259    LAS             0  N692SW      3      12            WN            0   
+260    LAS             0  N207WN      3      16            WN            0   
+261    LAS             0  N902WN      4      18            WN            0   
+262    LAS             0  N734SA      2      11            WN            0   
+
+    WeatherDelayStr  Year  
+0                NA  2008  
+1                 5  2008  
+2                NA  2008  
+3                 0  2008  
+4                NA  2008  
+..              ...   ...  
+258              NA  2008  
+259               0  2008  
+260              NA  2008  
+261               0  2008  
+262              NA  2008  
+
+[263 rows x 31 columns]"
+16,Source/flights,Validity,DayofMonth,Pass,All values are in the range of 1 to 31.
+17,Raw/flights,Validity,DayofMonth,Pass,All values are in the range of 1 to 31.
+18,Source/flights,Validity,DayOfWeek,Pass,All values are in the range of 1 to 7.
+19,Raw/flights,Validity,DayOfWeek,Pass,All values are in the range of 1 to 7.
+20,Source/flights,Validity,DepTime,Fail,"Bad records found:
+      Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+59  2008.0   10.0        23.0        4.0   2500.0      1505.0   1656.0   
+
+    CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+59      1714.0            XE     3053.0  ...   12.0     13.0        0.0   
+
+    CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+59               NaN       0.0           NaN          NaN      NaN   
+
+    SecurityDelay  LateAircraftDelay  
+59            NaN                NaN  
+
+[1 rows x 29 columns]"
+21,Raw/flights,Validity,DepTime,Fail,"Bad records found:
+   ActualElapsedTime AirTime ArrDelay ArrTime CRSArrTime CRSDepTime  \
+59               116      91      -18    1656       1714       1505   
+
+   CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+59            129                          0            0  ...        0   
+
+    Origin  SecurityDelay TailNum  TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+59     DTW              0  N48901      12      13            XE            0   
+
+   WeatherDelayStr  Year  
+59              NA  2008  
+
+[1 rows x 31 columns]"
+22,Source/flights,Validity,CRSDepTime,Pass,All values are in the range of 0 to 2359.
+23,Raw/flights,Validity,CRSDepTime,Pass,All values are in the range of 0 to 2359.
+24,Source/flights,Validity,ArrTime,Fail,"Bad records found:
+      Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+61  2008.0   10.0        23.0        4.0   1738.0      1725.0   2926.0   
+
+    CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+61      1849.0            XE     3055.0  ...    9.0     16.0        0.0   
+
+    CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+61               NaN       0.0           0.0          0.0     24.0   
+
+    SecurityDelay  LateAircraftDelay  
+61            0.0               13.0  
+
+[1 rows x 29 columns]"
+25,Raw/flights,Validity,ArrTime,Fail,"Bad records found:
+   ActualElapsedTime AirTime ArrDelay  ArrTime CRSArrTime  CRSDepTime  \
+61               168     143       37   2926.0       1849        1725   
+
+   CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+61            144                          0            0  ...       24   
+
+    Origin  SecurityDelay TailNum  TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+61     SAV              0  N13970       9      16            XE            0   
+
+   WeatherDelayStr  Year  
+61               0  2008  
+
+[1 rows x 31 columns]"
+26,Source/flights,Validity,ArrTime,Pass,All values are in the range of 0 to 2359.
+27,Raw/flights,Validity,ArrTime,Pass,All values are in the range of 0 to 2359.
+28,Source/flights,Consistency,ActualElapsedTime,Fail,"Bad records found:
+       Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+0    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+1    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+2    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+3    2008.0    5.0         2.0        5.0    901.0       905.0   1104.0   
+4    2008.0    5.0         3.0        6.0    901.0       905.0   1034.0   
+..      ...    ...         ...        ...      ...         ...      ...   
+532  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+533  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+534  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+535  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+536  2008.0    2.0         2.0        6.0   1126.0      1135.0   1237.0   
+
+     CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+0        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+1        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+2        1030.0            AA     1856.0  ...    5.0     10.0        0.0   
+3        1030.0            AA     1755.0  ...    7.0     35.0        0.0   
+4        1030.0            AA     1755.0  ...    5.0     17.0        0.0   
+..          ...           ...        ...  ...    ...      ...        ...   
+532      1845.0            B6      447.0  ...    NaN     14.0        0.0   
+533      1845.0            B6      447.0  ...    5.0      NaN        0.0   
+534      1845.0            B6      447.0  ...    5.0     14.0        NaN   
+535      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+536      1250.0            B6       51.0  ...    4.0     13.0        0.0   
+
+     CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+0                 NaN       0.0           NaN          NaN      8.0   
+1                 NaN       0.0           NaN          5.0      NaN   
+2                 NaN       0.0           3.0          NaN      NaN   
+3                 NaN       0.0           0.0          0.0     34.0   
+4                 NaN       0.0           NaN          NaN      NaN   
+..                ...       ...           ...          ...      ...   
+532               NaN       0.0           NaN          NaN      NaN   
+533               NaN       0.0           NaN          NaN      NaN   
+534               NaN       0.0           NaN          NaN      NaN   
+535               NaN       NaN           NaN          NaN      NaN   
+536               NaN       0.0           NaN          NaN      NaN   
+
+     SecurityDelay  LateAircraftDelay  
+0              NaN                NaN  
+1              NaN                NaN  
+2              NaN                NaN  
+3              0.0                0.0  
+4              NaN                NaN  
+..             ...                ...  
+532            NaN                NaN  
+533            NaN                NaN  
+534            NaN                NaN  
+535            NaN                NaN  
+536            NaN                NaN  
+
+[531 rows x 29 columns]"
+29,Raw/flights,Consistency,ActualElapsedTime,Fail,"Bad records found:
+    ActualElapsedTime AirTime ArrDelay  ArrTime  CRSArrTime  CRSDepTime  \
+0                  86      71        5   1025.0        1030         905   
+1                  86      71       -5   1025.0        1030         905   
+2                  86      71       -5   1025.0        1030         905   
+3                 123      81       34   1104.0        1030         905   
+4                  93      71        4   1034.0        1030         905   
+..                ...     ...      ...      ...         ...         ...   
+258                68      48        4   1329.0        1325        1220   
+259                60      45       50   2240.0        2150        2050   
+260                64      45        4    909.0         905         805   
+261                68      46       16   1751.0        1735        1625   
+262                59      46        0   1045.0        1045         940   
+
+    CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+0               85                          0            0  ...        8   
+1               85                          0            0  ...        0   
+2               85                          0            3  ...        0   
+3               85                          0            0  ...       34   
+4               85                          0            0  ...        0   
+..             ...              ...       ...          ...  ...      ...   
+258             65                          0            0  ...        0   
+259             60                          0           21  ...        0   
+260             60                          0            0  ...        0   
+261             70                          0            4  ...        0   
+262             65                          0            0  ...        0   
+
+     Origin  SecurityDelay TailNum  TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+0       DFW              0  N454AA       5      10            AA            0   
+1       DFW              0  N454AA       5      10            AA            5   
+2       DFW              0  N454AA       5      10            AA            0   
+3       DFW              0  N495AA       7      35            AA            0   
+4       DFW              0  N456AA       5      17            AA            0   
+..      ...            ...     ...     ...     ...           ...          ...   
+258     LAS              0  N428WN       4      16            WN            0   
+259     LAS              0  N692SW       3      12            WN            0   
+260     LAS              0  N207WN       3      16            WN            0   
+261     LAS              0  N902WN       4      18            WN            0   
+262     LAS              0  N734SA       2      11            WN            0   
+
+    WeatherDelayStr  Year  
+0                NA  2008  
+1                 5  2008  
+2                NA  2008  
+3                 0  2008  
+4                NA  2008  
+..              ...   ...  
+258              NA  2008  
+259               0  2008  
+260              NA  2008  
+261               0  2008  
+262              NA  2008  
+
+[263 rows x 31 columns]"
+30,Source/flights,Consistency,CRSElapsedTime,Fail,"Bad records found:
+       Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+0    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+1    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+2    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+3    2008.0    5.0         2.0        5.0    901.0       905.0   1104.0   
+4    2008.0    5.0         3.0        6.0    901.0       905.0   1034.0   
+..      ...    ...         ...        ...      ...         ...      ...   
+532  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+533  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+534  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+535  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+536  2008.0    2.0         2.0        6.0   1126.0      1135.0   1237.0   
+
+     CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+0        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+1        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+2        1030.0            AA     1856.0  ...    5.0     10.0        0.0   
+3        1030.0            AA     1755.0  ...    7.0     35.0        0.0   
+4        1030.0            AA     1755.0  ...    5.0     17.0        0.0   
+..          ...           ...        ...  ...    ...      ...        ...   
+532      1845.0            B6      447.0  ...    NaN     14.0        0.0   
+533      1845.0            B6      447.0  ...    5.0      NaN        0.0   
+534      1845.0            B6      447.0  ...    5.0     14.0        NaN   
+535      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+536      1250.0            B6       51.0  ...    4.0     13.0        0.0   
+
+     CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+0                 NaN       0.0           NaN          NaN      8.0   
+1                 NaN       0.0           NaN          5.0      NaN   
+2                 NaN       0.0           3.0          NaN      NaN   
+3                 NaN       0.0           0.0          0.0     34.0   
+4                 NaN       0.0           NaN          NaN      NaN   
+..                ...       ...           ...          ...      ...   
+532               NaN       0.0           NaN          NaN      NaN   
+533               NaN       0.0           NaN          NaN      NaN   
+534               NaN       0.0           NaN          NaN      NaN   
+535               NaN       NaN           NaN          NaN      NaN   
+536               NaN       0.0           NaN          NaN      NaN   
+
+     SecurityDelay  LateAircraftDelay  
+0              NaN                NaN  
+1              NaN                NaN  
+2              NaN                NaN  
+3              0.0                0.0  
+4              NaN                NaN  
+..             ...                ...  
+532            NaN                NaN  
+533            NaN                NaN  
+534            NaN                NaN  
+535            NaN                NaN  
+536            NaN                NaN  
+
+[533 rows x 29 columns]"
+31,Raw/flights,Consisntency,CRSElapsedTime,Fail,"Bad records found:
+    ActualElapsedTime AirTime ArrDelay  ArrTime  CRSArrTime  CRSDepTime  \
+0                  86      71        5   1025.0        1030         905   
+1                  86      71       -5   1025.0        1030         905   
+2                  86      71       -5   1025.0        1030         905   
+3                 123      81       34   1104.0        1030         905   
+4                  93      71        4   1034.0        1030         905   
+..                ...     ...      ...      ...         ...         ...   
+258                68      48        4   1329.0        1325        1220   
+259                60      45       50   2240.0        2150        2050   
+260                64      45        4    909.0         905         805   
+261                68      46       16   1751.0        1735        1625   
+262                59      46        0   1045.0        1045         940   
+
+    CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+0               85                          0            0  ...        8   
+1               85                          0            0  ...        0   
+2               85                          0            3  ...        0   
+3               85                          0            0  ...       34   
+4               85                          0            0  ...        0   
+..             ...              ...       ...          ...  ...      ...   
+258             65                          0            0  ...        0   
+259             60                          0           21  ...        0   
+260             60                          0            0  ...        0   
+261             70                          0            4  ...        0   
+262             65                          0            0  ...        0   
+
+     Origin  SecurityDelay TailNum  TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+0       DFW              0  N454AA       5      10            AA            0   
+1       DFW              0  N454AA       5      10            AA            5   
+2       DFW              0  N454AA       5      10            AA            0   
+3       DFW              0  N495AA       7      35            AA            0   
+4       DFW              0  N456AA       5      17            AA            0   
+..      ...            ...     ...     ...     ...           ...          ...   
+258     LAS              0  N428WN       4      16            WN            0   
+259     LAS              0  N692SW       3      12            WN            0   
+260     LAS              0  N207WN       3      16            WN            0   
+261     LAS              0  N902WN       4      18            WN            0   
+262     LAS              0  N734SA       2      11            WN            0   
+
+    WeatherDelayStr  Year  
+0                NA  2008  
+1                 5  2008  
+2                NA  2008  
+3                 0  2008  
+4                NA  2008  
+..              ...   ...  
+258              NA  2008  
+259               0  2008  
+260              NA  2008  
+261               0  2008  
+262              NA  2008  
+
+[263 rows x 31 columns]"
+32,Source/carriers,Uniqueness,"Code, Description",Fail,"Bad records found:
+     Code          Description
+4     07Q  Flair Airlines Ltd.
+6     0BQ                  DCA
+1494  ZUQ  Zuliana De Aviacion
+1501  07Q  Flair Airlines Ltd.
+1502  0BQ                  DCA
+1503  07Q  Flair Airlines Ltd.
+1504  ZUQ  Zuliana De Aviacion"
+33,Raw/carriers,Uniqueness,"Code, Description",Fail,"Bad records found:
+    code          description
+735  ZUQ  Zuliana De Aviacion
+742  07Q  Flair Airlines Ltd.
+744  07Q  Flair Airlines Ltd.
+745  ZUQ  Zuliana De Aviacion"
+34,Source/airports,Uniqueness,Iata,Fail,"Bad records found:
+     iata                airport              city state country        lat  \
+0     00M               Thigpen        Bay Springs    MS     USA  31.953765   
+1     00R   Livingston Municipal        Livingston    TX     USA  30.685861   
+2     00V            Meadow Lake  Colorado Springs    CO     USA  38.945749   
+8     NaN                                      NaN   NaN     NaN        NaN   
+9     NaN      Perry-Warsaw-Test        Perry-Test    CA     USA  42.741347   
+3367  Z08                    Ofu       Ofu Village    AS     USA  14.184351   
+3368  Z09               Kasigluk          Kasigluk    AK     USA  60.872022   
+3369  Z13               Akiachak          Akiachak    AK     USA  60.904532   
+3382  00M               Thigpen1       Bay Springs    MS     USA  37.953765   
+3383  00R  Livingston Municipal1        Livingston    TX     USA  33.685861   
+3384  00V          Meadow Lake 1  Colorado Springs    CO     USA  35.945749   
+3385  Z08                   Ofu1       Ofu Village    AS     USA  14.184351   
+3386  Z09               Kasigluk          Kasigluk    AK     USA  60.872422   
+3387  Z13              Akiachak1          Akiachak    AK     USA  60.964532   
+
+            long  
+0     -89.234505  
+1     -95.017928  
+2    -104.569893  
+8            NaN  
+9     -78.052081  
+3367 -169.670024  
+3368 -162.524809  
+3369 -161.420910  
+3382  -84.234505  
+3383  -94.017928  
+3384  -14.569893  
+3385 -169.670024  
+3386 -162.524809  
+3387 -161.420910  "
+35,Raw/airports,Uniqueness,Iata,Fail,"Bad records found:
+        airport         city country iata          lat         longt state
+1668        Ofu  Ofu Village     USA  Z08  14.18435056  -169.6700236    AS
+1669   Kasigluk     Kasigluk     USA  Z09  60.87202194  -162.5248094    AK
+1670   Akiachak     Akiachak     USA  Z13  60.90453167    -161.42091    AK
+1686       Ofu1  Ofu Village     USA  Z08  14.18435056  -169.6700236    AS
+1687   Kasigluk     Kasigluk     USA  Z09  60.87242194  -162.5248094    AK
+1688  Akiachak1     Akiachak     USA  Z13  60.96453167    -161.42091    AK"
+36,Source/flights,Uniqueness,"Year, Month, DayofMonth, DepTime, FlightNum",Fail,"Bad records found:
+       Year  Month  DayofMonth  DayOfWeek  DepTime  CRSDepTime  ArrTime  \
+0    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+1    2008.0    5.0         1.0        4.0    859.0       905.0   1025.0   
+15   2008.0    7.0        15.0        2.0   1726.0      1608.0   1941.0   
+16   2008.0    7.0        15.0        2.0   1726.0      1608.0   1943.0   
+17   2008.0    7.0        15.0        2.0   1726.0      1608.0   1942.0   
+507  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+511  2008.0    2.0         2.0        6.0    520.0       400.0    704.0   
+517  2008.0    2.0         2.0        NaN    520.0       400.0    704.0   
+519  2008.0    2.0         2.0        6.0    520.0         NaN    704.0   
+520  2008.0    2.0         2.0        6.0    520.0       400.0      NaN   
+521  2008.0    2.0         2.0        6.0    520.0       400.0    704.0   
+523  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+524  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+525  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+526  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+527  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+528  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+529  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+530  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+531  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+532  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+533  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+534  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+535  2008.0    2.0         2.0        6.0   1519.0      1525.0   1836.0   
+
+     CRSArrTime UniqueCarrier  FlightNum  ... TaxiIn  TaxiOut  Cancelled  \
+0        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+1        1030.0            AA     1755.0  ...    5.0     10.0        0.0   
+15       1824.0            FL      401.0  ...    4.0     22.0        0.0   
+16       1824.0            FL      401.0  ...    4.0     22.0        0.0   
+17       1824.0            FL      401.0  ...    4.0     22.0        0.0   
+507      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+511       608.0            B6      724.0  ...    6.0      9.0        0.0   
+517       608.0            B6      724.0  ...    6.0      9.0        0.0   
+519       608.0            B6      724.0  ...    6.0      9.0        0.0   
+520       608.0            B6      724.0  ...    6.0      9.0        0.0   
+521         NaN            B6      724.0  ...    6.0      9.0        0.0   
+523      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+524      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+525      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+526      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+527      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+528      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+529      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+530      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+531      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+532      1845.0            B6      447.0  ...    NaN     14.0        0.0   
+533      1845.0            B6      447.0  ...    5.0      NaN        0.0   
+534      1845.0            B6      447.0  ...    5.0     14.0        NaN   
+535      1845.0            B6      447.0  ...    5.0     14.0        0.0   
+
+     CancellationCode  Diverted  CarrierDelay WeatherDelay NASDelay  \
+0                 NaN       0.0           NaN          NaN      8.0   
+1                 NaN       0.0           NaN          5.0      NaN   
+15                NaN       0.0           0.0          0.0      0.0   
+16                NaN       0.0           0.0          0.0      0.0   
+17                NaN       0.0           0.0          0.0      0.0   
+507               NaN       0.0           NaN          NaN      NaN   
+511               NaN       0.0           0.0          0.0      0.0   
+517               NaN       0.0           0.0          0.0      0.0   
+519               NaN       0.0           0.0          0.0      0.0   
+520               NaN       0.0           0.0          0.0      0.0   
+521               NaN       0.0           0.0          0.0      0.0   
+523               NaN       0.0           NaN          NaN      NaN   
+524               NaN       0.0           NaN          NaN      NaN   
+525               NaN       0.0           NaN          NaN      NaN   
+526               NaN       0.0           NaN          NaN      NaN   
+527               NaN       0.0           NaN          NaN      NaN   
+528               NaN       0.0           NaN          NaN      NaN   
+529               NaN       0.0           NaN          NaN      NaN   
+530               NaN       0.0           NaN          NaN      NaN   
+531               NaN       0.0           NaN          NaN      NaN   
+532               NaN       0.0           NaN          NaN      NaN   
+533               NaN       0.0           NaN          NaN      NaN   
+534               NaN       0.0           NaN          NaN      NaN   
+535               NaN       NaN           NaN          NaN      NaN   
+
+     SecurityDelay  LateAircraftDelay  
+0              NaN                NaN  
+1              NaN                NaN  
+15             0.0               77.0  
+16             0.0               77.0  
+17             0.0               77.0  
+507            NaN                NaN  
+511            0.0               56.0  
+517            0.0               56.0  
+519            0.0               56.0  
+520            0.0               56.0  
+521            0.0               56.0  
+523            NaN                NaN  
+524            NaN                NaN  
+525            NaN                NaN  
+526            NaN                NaN  
+527            NaN                NaN  
+528            NaN                NaN  
+529            NaN                NaN  
+530            NaN                NaN  
+531            NaN                NaN  
+532            NaN                NaN  
+533            NaN                NaN  
+534            NaN                NaN  
+535            NaN                NaN  
+
+[24 rows x 29 columns]"
+37,Raw/flights,Uniqueness,"Year, Month, DayofMonth, DepTime, FlightNum",Fail,"Bad records found:
+   ActualElapsedTime AirTime ArrDelay  ArrTime  CRSArrTime  CRSDepTime  \
+0                 86      71        5   1025.0        1030         905   
+1                 86      71       -5   1025.0        1030         905   
+15               135     109       77   1941.0        1824        1608   
+16               135     109       77   1943.0        1824        1608   
+17               135     109       77   1942.0        1824        1608   
+
+   CRSElapsedTime CancellationCode Cancelled CarrierDelay  ... NASDelay  \
+0              85                          0            0  ...        8   
+1              85                          0            0  ...        0   
+15            136                          0            0  ...        0   
+16            136                          0            0  ...        0   
+17            136                          0            0  ...        0   
+
+    Origin  SecurityDelay TailNum  TaxiIn TaxiOut UniqueCarrier WeatherDelay  \
+0      DFW              0  N454AA       5      10            AA            0   
+1      DFW              0  N454AA       5      10            AA            5   
+15     ATL              0  N946AA       4      22            FL            0   
+16     ATL              0  N946AT       4      22            FL            0   
+17     ATL              0  N946AE       4      22            FL            0   
+
+   WeatherDelayStr  Year  
+0               NA  2008  
+1                5  2008  
+15               0  2008  
+16               0  2008  
+17               0  2008  
+
+[5 rows x 31 columns]"
